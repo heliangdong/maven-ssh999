@@ -20,6 +20,10 @@ public class Region {
     private String citycode;
     private Set subareas = new HashSet(0);
 
+    public String getName() {
+        return province + " " + city + " " + district;
+    }
+
     // Constructors
 
     /** default constructor */

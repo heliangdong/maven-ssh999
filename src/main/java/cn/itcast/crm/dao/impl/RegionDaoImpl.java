@@ -11,7 +11,7 @@ import java.util.List;
 public class RegionDaoImpl extends BaseDaoImpl<Region> implements RegionDao {
     public List<Region> findlike(String q) {
         String sql="FROM Region where citycode LIKE ?";
-        List<Region> list = (List<Region>) this.getHibernateTemplate().find(sql,q);
+        List<Region> list = (List<Region>) this.getHibernateTemplate().find(sql,'%'+q+'%');
         return list;
     }
 }
