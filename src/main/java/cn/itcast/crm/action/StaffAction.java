@@ -15,6 +15,7 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
 import java.io.IOException;
+import java.util.List;
 
 
 @Controller
@@ -68,6 +69,13 @@ public class StaffAction extends BaseAction<Staff> {
         staff.setStation(model.getStation());
         staffServer.update(staff);
         return "tolist";
+    }
+
+    //查询所有未删除的取派员，返回JSON
+    public String listajax(){
+        List<Staff> list=staffServer.findListNotDelete();
+        this.java2Json(list,new String[]{"decidedzones"});
+        return null;
     }
 
     public String getIds() {

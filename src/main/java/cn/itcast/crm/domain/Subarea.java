@@ -44,6 +44,10 @@ public class Subarea{
 
         // Property accessors
 
+        public String getSubareaid(){
+            return id;
+        }
+
         public String getId() {
             return this.id;
         }

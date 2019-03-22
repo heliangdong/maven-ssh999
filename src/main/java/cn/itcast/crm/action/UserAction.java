@@ -3,6 +3,8 @@ package cn.itcast.crm.action;
 import cn.itcast.crm.domain.User;
 import cn.itcast.crm.service.UserServer;
 import cn.itcast.crm.utils.GetUserSessionUtils;
+import com.itheima.crm.service.Customer;
+import com.itheima.crm.service.ICustomerService;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
@@ -12,6 +14,7 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
 import java.io.IOException;
+import java.util.List;
 
 @Controller
 @Scope("prototype")
@@ -19,6 +22,8 @@ public class UserAction  extends ActionSupport implements ModelDriven<User> {
 
     @Autowired
     private UserServer userService;
+    @Autowired
+    private ICustomerService proxy;
 
     User u=new User();
 
@@ -38,6 +43,16 @@ public class UserAction  extends ActionSupport implements ModelDriven<User> {
     }
 
     public String login(){
+        //测试代理ICustomerService proxy
+        List<Customer> list = proxy.findAll();
+        System.out.println("list="+list);
+
+        List<Customer> list1 = proxy.findListNotAssociation();
+        for(Customer c:list1){
+            System.out.println("c="+c);
+        }
+
+
         //获取session中生成的验证码
         String validatecode= (String) ServletActionContext.getRequest().getSession().getAttribute("key");
         if(checkcode!=null&&checkcode.equals(validatecode)){

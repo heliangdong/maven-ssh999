@@ -62,5 +62,15 @@
             <result name="tohome">/index.jsp</result>
             <result name="tologin">/login.jsp</result>
         </action>
+
+        <!--分区接口-->
+        <action name="SubareaAction_*" class="cn.itcast.crm.action.SubareaAction" method="{1}">
+            <result name="list">/WEB-INF/pages/base/subarea.jsp</result>
+        </action>
+
+        <!--定区接口-->
+        <action name="DecidedzoneAction_*" class="cn.itcast.crm.action.DecidedzoneAction" method="{1}">
+            <result name="list">/WEB-INF/pages/base/subarea.jsp</result>
+        </action>
 	</package>
 </struts>
